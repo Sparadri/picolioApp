@@ -10,9 +10,11 @@ import {
 } from 'react-native';
 
 import Home from './components/home';
+import Question from './components/question';
 
 var ROUTES = {
-  home: "Home"
+  home: "Home",
+  question: "Question"
 };
 
 module.exports = React.createClass({
@@ -26,9 +28,9 @@ module.exports = React.createClass({
      if(route.name == ROUTES.home) {
        return <Home navigator={navigator} {...route.passProps} />
      }
-     // if(route.name == 'Main') {
-     //   return <Main navigator={navigator} {...route.passProps} />
-     // }
+     if(route.name == ROUTES.question) {
+       return <Question navigator={navigator} {...route.passProps} />
+     }
   },
   render() {
     return (
@@ -36,6 +38,7 @@ module.exports = React.createClass({
           configureScene={ this.configureScene }
           style={{ flex:1 }}
           initialRoute={{ name: "Home" }}
+          configureScene={() => { return Navigator.SceneConfigs.FloatFromRight; }}
           renderScene={ this.renderScene } />
     );
   }

@@ -8,9 +8,31 @@ import {
   Text,
   View
 } from 'react-native';
+import { Button, Card } from 'react-native-material-design';
 
+var QUESTIONS = {
+  question1: {
+    question: "What meal will you eat?",
+    answers: ["Meat", "Fish", "I don't know!"]
+  },
+  question2: {
+    question: "What's your preference?",
+    answers: ["Meat", "Fish", "I don't know!"]
+  }
+}
 
 module.exports = React.createClass({
+
+
+   onStartPress: function() {
+    this.props.navigator.push({
+      name: 'Question',
+      passProps: {
+        content: QUESTIONS.question1
+      }
+    });
+  },
+
   render() {
     console.log("Home component is rendered");
     return (
@@ -25,12 +47,10 @@ module.exports = React.createClass({
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
-        <TouchableHighlight
-          onPress={ () => route.onPress() } >
-         <Text style={ styles.button }>
-              { 'Right Button' }
-         </Text>
-        </TouchableHighlight>
+        <Button
+          text="Take the questionaire"
+          raised={true}
+          onPress={()=> this.onStartPress()} />
       </View>
     );
   }
