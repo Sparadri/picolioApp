@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  TouchableHighlight,
   Text,
   View
 } from 'react-native';
@@ -24,6 +25,12 @@ module.exports = React.createClass({
           Press Cmd+R to reload,{'\n'}
           Cmd+D or shake for dev menu
         </Text>
+        <TouchableHighlight
+          onPress={ () => route.onPress() } >
+         <Text style={ styles.button }>
+              { 'Right Button' }
+         </Text>
+        </TouchableHighlight>
       </View>
     );
   }
