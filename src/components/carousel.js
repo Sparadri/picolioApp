@@ -32,7 +32,7 @@ module.exports = React.createClass({
       .then((responseText) => {
         this.setState({
           isLoading: false,
-          wines: responseText
+          wines: JSON.parse(responseText)
         });
         this._buildListView();
       })
@@ -42,8 +42,9 @@ module.exports = React.createClass({
   },
 
   _buildListView: function() {
+    console.log(this.state)
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.setState({dataSource: ds.cloneWithRows(this.state.wines),})
+    this.setState({dataSource: ds.cloneWithRows(this.state.wines.wines),})
   },
 
   _renderAnswerRow: function(wine) {
