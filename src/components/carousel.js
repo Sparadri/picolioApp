@@ -1,4 +1,3 @@
-console.log("Question component to be loaded");
 
 import React, { Component } from 'react';
 import {
@@ -6,6 +5,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
+  ActivityIndicator,
   ListView,
   Text,
   View
@@ -17,16 +17,64 @@ import { Button, Card } from 'react-native-material-design';
 module.exports = React.createClass({
 
   getInitialState: function() {
+    console.log("Carousel initialised");
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     return {
-      dataSource: ds.cloneWithRows(this.props.content.answers),
+      dataSource: null,
+      wines: null,
+      isLoading: true
     };
+  },
+
+  componentDidMount: function() {
+    fetch(this.props.url)
+      .then((response) => response.text())
+      .then((responseText) => {
+        this.setState({
+          isLoading: false,
+          wines: responseText
+        });
+        this._buildListView();
+      })
+      .catch((error) => {
+        console.warn(error);
+    });
+  },
+
+  _buildListView: function() {
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.setState({dataSource: ds.cloneWithRows(this.state.wines),})
+  },
+
+  _renderAnswerRow: function(wine) {
+    return (
+      <Button
+        raised={true}
+        onPress={()=> this.onButtonPress(this.props.content.topic, answer)}
+        text={wine} />
+      )
+  },
+
+  _renderListView: function() {
+    if (this.state.dataSource) {
+      return (
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(wine) => this._renderAnswerRow(wine)}
+        />
+      )
+    }
   },
 
   render() {
     return (
       <View style={styles.container}>
-        <Text> Adrien </Text>
+        <ActivityIndicator
+          animating={this.state.isLoading}
+          style={[styles.centering, {height: 80}]}
+          size="large"
+        />
+        {this._renderListView()}
       </View>
     );
   }

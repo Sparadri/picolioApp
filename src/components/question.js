@@ -27,7 +27,7 @@ module.exports = React.createClass({
     this.props.onButtonPress(topic, answer);
   },
 
-  renderAnswerRow: function(answer) {
+  _renderAnswerRow: function(answer) {
     return (
       <Button
         raised={true}
@@ -48,7 +48,7 @@ module.exports = React.createClass({
                 <Text>Some text to go in the body.</Text>
                 <ListView
                   dataSource={this.state.dataSource}
-                  renderRow={(answer) => this.renderAnswerRow(answer)}
+                  renderRow={(answer) => this._renderAnswerRow(answer)}
                 />
             </Card.Body>
         </Card>

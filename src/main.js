@@ -12,11 +12,13 @@ import {
 import Home from './components/home';
 import Question from './components/question';
 import Questions from './components/questions';
+import Carousel from './components/carousel';
 
 var ROUTES = {
   home: "Home",
   questions: "Questions",
-  question: "Question"
+  question: "Question",
+  carousel: "Carousel"
 };
 
 module.exports = React.createClass({
@@ -35,6 +37,9 @@ module.exports = React.createClass({
      }
      if(route.name == ROUTES.question) {
        return <Question navigator={navigator} {...route.passProps} />
+     }
+     if(route.name == ROUTES.carousel) {
+       return <Carousel navigator={navigator} {...route.passProps} />
      }
   },
   render() {
