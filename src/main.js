@@ -11,9 +11,11 @@ import {
 
 import Home from './components/home';
 import Question from './components/question';
+import Questions from './components/questions';
 
 var ROUTES = {
   home: "Home",
+  questions: "Questions",
   question: "Question"
 };
 
@@ -27,6 +29,9 @@ module.exports = React.createClass({
   renderScene(route, navigator) {
      if(route.name == ROUTES.home) {
        return <Home navigator={navigator} {...route.passProps} />
+     }
+     if(route.name == ROUTES.questions) {
+       return <Questions navigator={navigator} {...route.passProps} />
      }
      if(route.name == ROUTES.question) {
        return <Question navigator={navigator} {...route.passProps} />

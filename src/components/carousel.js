@@ -10,6 +10,7 @@ import {
   Text,
   View
 } from 'react-native';
+
 import { Button, Card } from 'react-native-material-design';
 
 
@@ -22,36 +23,10 @@ module.exports = React.createClass({
     };
   },
 
-  onButtonPress: function(topic, answer) {
-    console.log(answer+"  -  "+topic);
-    this.props.onButtonPress(topic, answer);
-  },
-
-  renderAnswerRow: function(answer) {
-    return (
-      <Button
-        raised={true}
-        onPress={()=> this.onButtonPress(this.props.content.topic, answer)}
-        text={answer} />
-      )
-  },
-
   render() {
     return (
       <View style={styles.container}>
-        <Card>
-            <Card.Media
-                image={<Image source={{uri: 'https://assets.entrepreneur.com/content/16x9/822/20150909205144-red-wine-classy-evening-dinner.jpeg'}} />}
-                overlay={true}
-            />
-            <Card.Body>
-                <Text>Some text to go in the body.</Text>
-                <ListView
-                  dataSource={this.state.dataSource}
-                  renderRow={(answer) => this.renderAnswerRow(answer)}
-                />
-            </Card.Body>
-        </Card>
+        <Text> Adrien </Text>
       </View>
     );
   }

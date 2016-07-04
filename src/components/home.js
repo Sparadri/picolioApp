@@ -10,26 +10,18 @@ import {
 } from 'react-native';
 import { Button, Card } from 'react-native-material-design';
 
-var QUESTIONS = {
-  question1: {
-    question: "What meal will you eat?",
-    answers: ["Meat", "Fish", "I don't know!"]
-  },
-  question2: {
-    question: "What's your preference?",
-    answers: ["Meat", "Fish", "I don't know!"]
-  }
-}
-
 module.exports = React.createClass({
 
+  getInitialState: function() {
+    return {
+      TBD: null,
+    };
+  },
 
+  // redirect to questions, which will take care of sliding & validating the questions
    onStartPress: function() {
     this.props.navigator.push({
-      name: 'Question',
-      passProps: {
-        content: QUESTIONS.question1
-      }
+      name: 'Questions',
     });
   },
 
