@@ -1,3 +1,4 @@
+'use strict';
 console.log("Main component to be loaded");
 
 import React, { Component } from 'react';
@@ -13,12 +14,14 @@ import Home from './components/home';
 import Question from './components/question';
 import Questions from './components/questions';
 import Carousel from './components/carousel';
+import Wine from './components/wine';
 
 var ROUTES = {
   home: "Home",
   questions: "Questions",
   question: "Question",
-  carousel: "Carousel"
+  carousel: "Carousel",
+  wine: "Wine"
 };
 
 module.exports = React.createClass({
@@ -40,6 +43,9 @@ module.exports = React.createClass({
      }
      if(route.name == ROUTES.carousel) {
        return <Carousel navigator={navigator} {...route.passProps} />
+     }
+     if(route.name == ROUTES.wine) {
+       return <Wine navigator={navigator} {...route.passProps} />
      }
   },
   render() {

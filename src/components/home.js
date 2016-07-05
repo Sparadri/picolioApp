@@ -8,7 +8,7 @@ import {
   Text,
   View
 } from 'react-native';
-import { Button, Card } from 'react-native-material-design';
+import Button from 'apsl-react-native-button';
 
 module.exports = React.createClass({
 
@@ -29,40 +29,56 @@ module.exports = React.createClass({
     console.log("Home component is rendered");
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+        <Text style={styles.header}>
+          Welcome to Picolio!
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        <Text style={styles.subtitle}>
+          The easiest way to find the best wine near your ;)
         </Text>
         <Button
-          text="Take the questionaire"
-          raised={true}
-          onPress={()=> this.onStartPress()} />
+          style={styles.buttonWrapper}
+          textStyle={styles.buttonText}
+          onPress={()=> this.onStartPress()}>
+          TAKE THE QUESTIONAIRE
+        </Button>
       </View>
     );
   }
 })
 
 const styles = StyleSheet.create({
+  buttonText: {
+    fontWeight: '700',
+    fontSize: 14,
+    color: '#2980b9'
+  },
+  buttonWrapper: {
+    backgroundColor: '#ecf0f1',
+    borderColor: '#ecf0f1',
+    width: 200,
+    alignSelf: 'center',
+    marginTop: 50
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#e74c3c',
   },
-  welcome: {
-    fontSize: 20,
+  header: {
+    fontSize: 25,
+    color: '#ecf0f1',
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
+  subtitle: {
+    fontSize: 13,
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+    color: '#ecf0f1',
+    marginTop: 10,
   },
+  button: {
+    height: 50,
+    backgroundColor: '#e74c3c',
+  }
 });

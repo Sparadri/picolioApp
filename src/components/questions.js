@@ -11,22 +11,23 @@ import {
   View
 } from 'react-native';
 import { Button, Card } from 'react-native-material-design';
+import NavigationBar from 'react-native-navbar';
 
 var QUESTIONS = [
   {
     topic: "pairing",
     question: "What meal will you eat?",
-    answers: ["Meat", "Fish", "I don't know!"]
+    answers: ["MEAT", "FISH", "I don't know!"]
   },
   {
     topic: "type",
-    question: "What's your preference?",
-    answers: ["White", "Red", "Rosé"]
+    question: "What type of wine to you want?",
+    answers: ["WHITE WINE", "RED WINE", "ROSE WINE"]
   },
   {
     topic: "price",
     question: "What's your maximum price?",
-    answers: ["Less than 10 euros", "Less than 20 euros", "Over 20 euros"]
+    answers: ["LESS THAN 10e", "LESS THAN 20e", "OVER 20e"]
   }
 ]
 
@@ -43,14 +44,14 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-   navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var initialPosition = JSON.stringify(position);
-        this.setState({initialPosition});
-      },
-      (error) => alert(error.message),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+   // navigator.geolocation.getCurrentPosition(
+   //    (position) => {
+   //      var initialPosition = JSON.stringify(position);
+   //      this.setState({initialPosition});
+   //    },
+   //    (error) => alert(error.message),
+   //    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+   //  );
   },
 
   onButtonPress: function(topic, answer) {
@@ -92,8 +93,9 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1, }}>
           <Question
+            navigator={this.props.navigator}
             content={QUESTIONS[this.state.qNumber]}
             onButtonPress={this.onButtonPress}/>
       </View>
